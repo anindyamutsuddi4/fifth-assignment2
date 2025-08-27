@@ -5,65 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-
-<body>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .hind-madurai-bold {
+            font-family: "Hind Madurai", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .hind-madurai-semibold {
+            font-family: "Hind Madurai", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+        }
+    </style>
 </head>
 
-<body>
-    <nav class="flex gap-4 items-center w-[100%] h-[67px] mt-[10px] p-[15px] pl-[0.01px] pr-[0.01px]">
+<body class="bg-[#F5FFF6]">
+    <nav class="flex bg-white gap-4 items-center w-[100%] h-[61px] mt-[10px] p-[15px] pl-[0.01px] pr-[0.01px]">
         <section class="flex  gap-2 h-full w-[36%] mx-auto items-center ">
             <section class="h-[100%] w-14"><img class="h-full w-full" src="assets/logo.png" alt="">
             </section>
-            <p class="font-extrabold text-[#006747] text-base ">Emergency Service</p>
+            <p class="font-extrabold text-[#006747] text-sm">Emergency Service</p>
         </section>
         <section class="flex mb-2 h-full w-[50%] justify-between mx-auto items-center  mt-2">
-            <section class="flex h-full justify-between">
-                <div class="badge font-bold gap-1 h-full badge bg-[#d9e7dc]">
+            <section class="flex  h-full justify-between">
+                <div class="badge rounded-3xl font-bold gap-1 h-full badge bg-[#d9e7dc]">
                     <div>0</div>
                     <div class=" h-[60%]"> <img class="h-[100%]" src="assets/heart.png" alt=""></div>
                 </div>
             </section>
             <section class="flex  h-full justify-between">
-                <div class="badge font-bold gap-1 h-full badge bg-[#d9e7dc]">
+                <div class="badge rounded-3xl font-bold gap-1 h-full badge bg-[#d9e7dc]">
                     <div>100</div>
                     <div class=" h-[60%] w-full"> <img class=" h-[100%] w-full" src="assets/coin.png" alt="">
                     </div>
                 </div>
             </section>
             <section class="flex h-full">
-                <div class="badge h-full gap-1 text-white
- badge bg-[#32b763]">
+                <div class=" rounded-3xl badge h-full gap-1 text-white
+ badge bg-[#00A63E]">
                     <div>2</div>
                     <div>Copy</div>
                 </div>
             </section>
-
-
         </section>
-
-
-
-
-
     </nav>
-    <section>
-        <div><img src="assets/logo.png" alt=""></div>
+    <section
+        class="flex mt-3 w-[100%] pt-3 h-[140px] flex-col items-center mx-auto bg-gradient-to-r from-[#013223] via-[#006747] to-[#013223] text-white">
+        <div><img class="h-[50px]" src="assets/logo.png" alt=""></div>
+        <div class="hind-madurai-bold text-white text-2xl items-center">Emergency Service Directory</div>
+        <div class="text-xs hind-madurai-semibold text-white text-center">Government Emergency Services at Your
+            Fingertip – A Project by Government of the People’s Republic of Bangladesh</div>
     </section>
-</body>
 
-</html>
 </body>
 
 </html>
