@@ -8,11 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         .hind-madurai-bold {
             font-family: "Hind Madurai", sans-serif;
@@ -25,26 +28,40 @@
             font-weight: 600;
             font-style: normal;
         }
+
+        .roboto-robo {
+            font-family: "Roboto", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 100;
+        }
+
+        .inter-intero {
+            font-family: "Inter", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
     </style>
 </head>
 
-<body class="bg-[#F5FFF6]">
+<body class="bg-[#F5FFF6] w-[100%]">
     <nav class="flex bg-white gap-4 items-center w-[100%] h-[61px] mt-[10px] p-[15px] pl-[0.01px] pr-[0.01px]">
         <section class="flex  gap-2 h-full w-[36%] mx-auto items-center ">
-            <section class="h-[100%] w-14"><img class="h-full w-full" src="assets/logo.png" alt="">
+            <section class="h-[100%] w-12"><img class="h-full w-full" src="assets/logo.png" alt="">
             </section>
             <p class="font-extrabold text-[#006747] text-sm">Emergency Service</p>
         </section>
         <section class="flex mb-2 h-full w-[50%] justify-between mx-auto items-center  mt-2">
             <section class="flex  h-full justify-between">
                 <div class="badge rounded-3xl font-bold gap-1 h-full badge bg-[#d9e7dc]">
-                    <div>0</div>
+                    <div id="in-love">0</div>
                     <div class=" h-[60%]"> <img class="h-[100%]" src="assets/heart.png" alt=""></div>
                 </div>
             </section>
             <section class="flex  h-full justify-between">
                 <div class="badge rounded-3xl font-bold gap-1 h-full badge bg-[#d9e7dc]">
-                    <div>100</div>
+                    <div id="in-coin">100</div>
                     <div class=" h-[60%] w-full"> <img class=" h-[100%] w-full" src="assets/coin.png" alt="">
                     </div>
                 </div>
@@ -62,10 +79,126 @@
         class="flex mt-3 w-[100%] pt-3 h-[140px] flex-col items-center mx-auto bg-gradient-to-r from-[#013223] via-[#006747] to-[#013223] text-white">
         <div><img class="h-[50px]" src="assets/logo.png" alt=""></div>
         <div class="hind-madurai-bold text-white text-2xl items-center">Emergency Service Directory</div>
-        <div class="text-xs hind-madurai-semibold text-white text-center">Government Emergency Services at Your
+        <div class="text-xs p-1 hind-madurai-semibold text-white text-center">Government Emergency Services at Your
             Fingertip – A Project by Government of the People’s Republic of Bangladesh</div>
     </section>
+    <section class="flex gap-3 p-2 mt-2 w-[100%]">
+        <section class=" p-3 w-[53%] bg-white rounded-sm shadow-md">
+            <div class="flex justify-between items-center mx-auto">
+                <div class="rounded-lg bg-[#FFE3E2] h-12 w-12"><img class="p-2" src="assets/emergency.png" alt=""></div>
+                <div><i id="love" class="fa-regular fa-heart"></i></div>
+            </div>
+            <div>
+                <h1 class="hind-madurai-bold text-base">National Emergency Number</h1>
+                <h6 class="roboto-robo text-xs">National Emergency</h6>
+            </div>
+            <div class="pt-3">999</div>
+            <button class="hind-madurai-bold text-[#5C5C5C] rounded-2xl border w-[40px]">All</button>
+            <div class="pt-2 flex gap-2">
+                <button class="btn btn-outline rounded-lg w-[50%] inter-intero text-[#5C5C5C] roboto-robo"><i
+                        class="fa-regular fa-copy"></i>
+                    Copy</button>
+                <button id="calling" class="btn btn-outline rounded-lg w-[50%] bg-[#006747] text-white"> <i
+                        class="fa-solid fa-phone"></i> Call</button>
+            </div>
+        </section>
 
+        <section  class='flex-col w-[45%] bg-white p-2 mr-1'>
+            <section class="flex justify-between mx-auto items-center gap-5 bg-white">
+                <div class="roboto-robo text-sm text-[#111111] "><i class="fa-regular fa-clock"></i>
+                    Call History</div>
+                <div><button id="clear"
+                        class="font-semibold text-xs rounded-3xl border w-19 h-10 bg-[#00A63E] text-white">Clear</button>
+                </div>
+            </section>
+            <section id="addhistory"></section>
+        </section>
+
+    </section>
+
+
+    <script>
+        document.getElementById('clear').addEventListener('click',function(){
+            document.getElementById('addhistory').innerText=''
+        })
+        function fix(name1, number) {
+            const history1 = document.createElement('div')
+
+            history1.innerHTML = `
+ <div id="history" class="bg-[#FAFAFA] flex items-center rounded-md p-1 mt-3">
+        <div>
+            <p id="name" class="inter-intero font-semibold text-[#111111]">${name1}</p>
+            <div id="num" class="hind-madurai-semibold text-[#5C5C5C]"> ${number}</div>
+        </div>
+        <div id="time" class="hind-madurai-semibold text-[#5C5C5C]">${new Date().toLocaleTimeString()}</div>
+
+    </div>`
+
+            document.getElementById('addhistory').appendChild(history1)
+
+        }
+        document.getElementById('love').addEventListener('click', function () {
+            increaseheart()
+
+        })
+        //   document.getElementsByClassName('confirmButtonText').addEventListener('click',function(){
+
+        //     })
+        function increaseheart() {
+            const number = parseInt(document.getElementById('in-love').innerText) + 1
+            document.getElementById('in-love').innerText = number
+        }
+
+        function tocall(name1, number1) {
+            if (parseInt(document.getElementById('in-coin').innerText) >= 20) {
+                Swal.fire({
+                    text: `Calling ${name1} ${number1}`,
+                    icon: 'question',
+                    confirmButtonText: 'Call'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const number = parseInt(document.getElementById('in-coin').innerText) - 20
+                        document.getElementById('in-coin').innerText = number
+                        fix('National Emergency', 999)
+                    }
+                })
+
+            }
+            else {
+                Swal.fire({
+                    text: "Sorry,You don't have enough coins to call",
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        }
+        document.getElementById('calling').addEventListener('click', function () {
+            tocall('National Emergency number', 999)
+            // if (decreasecoin() + 20 >= 20) {
+            //     Swal.fire({
+            //         text: 'Calling National Emergency number  999',
+            //         icon: 'question',
+            //         confirmButtonText: 'Call'
+            //     });
+            // }
+            // else {
+            //     Swal.fire({
+            //         text: "Sorry,You don't have enough coins to call",
+            //         icon: 'error',
+            //         confirmButtonText: 'Ok'
+            //     });
+            // }
+        })
+        // function decreasecoin() {
+        //     // const number = parseInt(document.getElementById('in-coin').innerText) - 20
+        //     // document.getElementById('in-coin').innerText = number
+        //     // if(number<0){
+        //         number=0;
+        //     }
+        //     return number
+        // }
+
+    </script>
 </body>
 
 </html>
