@@ -111,6 +111,13 @@ You have to create a `Readme.md` file. and write down following questions. Dont 
 ### 6. Answer the following questions clearly:
 
 1. What is the difference between **getElementById, getElementsByClassName, and querySelector / querySelectorAll**?
+getElementById calls the specific should be unique  whoose name matches with searched one.It only works with one element.
+getElementByClass returns an array of the class whoose name matches with the searched one.
+
+ Many elements can contain class of same name but each id should be unique and can be declared only in one element
+
+QuerySelector returns only the first element of all the matching elements
+QueryselectorAll returns a noddelist consist of all the matching elements
 2. How do you **create and insert a new element into the DOM**?
 3. What is **Event Bubbling** and how does it work?
 4. What is **Event Delegation** in JavaScript? Why is it useful?
